@@ -1,0 +1,14 @@
+{% from "_flaskmacros.html" import render_field %}
+{% extends "base.html" %}
+
+{% block title %}classcore: create document{% endblock %}
+
+{% block content %}
+<form method = "post">
+    <dl>
+        {{ render_field(form.name) }}
+        {{ render_field(form.documentText,rows=6, cols=150 ) }}
+    </dl>
+    <input type="submit" value="Create Document">
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %} classcore: {{ docName }} {% endblock %}
+
+{% block content %}
+<div class="px-6">
+    <div class = "block">
+        <p class="is-size-2">{{ docName }}</p>
+        <div class="tags">
+            {% for tag in docTags %}
+            <span class="tag is-info is-light">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="block">
+        <p>Written by </p>
+        {% for author in docAuthors %}
+            <a href="/user?user_id={{ author["id"] }}">{{ author["name"] }}</a>
+        {% endfor %}
+    </div>
+
+    <div class = "block">
+        {% if not underClass == None  %}
+            <nav class = "breadcrumbs has-bullet-seperators" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="/classes?class_id={{ underClass["classlink"] }}">{{ underClass["className"] }}</a></li>
+                    <li>{{ docName }}</li>
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+
+    <div class="content block px-5 is-size-5">{{ docText }}</div>
+</div>
+{% endblock %}

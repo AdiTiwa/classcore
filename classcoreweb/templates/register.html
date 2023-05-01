@@ -1,0 +1,20 @@
+{% from "_flaskmacros.html" import render_field %}
+
+<html>
+    <head>
+        <title>classcore: login</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    </head>
+    <body>
+        <form method="post">
+            <dl>
+                {{ render_field(form.username) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.password) }}
+                {{ render_field(form.confirm) }}
+            </dl>
+            <input type="submit" value="login">
+        </form>
+    </body>
+</html>
+

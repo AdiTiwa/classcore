@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>{% block title %}classcore: base{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    </head>
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <img src="{{ url_for('static', filename='classcore_logo.png') }}">
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        Home
+                    </a>
+                    
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link" href="/create">
+                        Create
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="/create/document">
+                                Document
+                            </a>
+
+                            <a class="navbar-item" href="/create/class">
+                                Class
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {% if session["isLoggedIn"] %}
+                <div class="navbar-end">
+                    <div class="navbar-item">
+
+                        <div class="buttons">
+
+                            <a class="button is-primary" href="/">
+                                <strong>Classes</strong>
+                            </a>
+                            <a class="button is-light" href="/user?user_id={{ session["userId"] }}">
+                                Your Profile
+                            </a>
+
+                            <a class = "button is-light" href="/logout">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" href="/register">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-light" href="/login">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% block content %}
+        <p>This is the content block from the base html page, this will change btw</p>
+        {% endblock %}
+    </body>
+</html>

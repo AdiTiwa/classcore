@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}classcore: {{ className }} {% endblock %}
+
+{% block content %}
+    <section class="hero is-info is-medium">
+        <div class="hero-body">
+            <p class="title is-size-1">
+                {{ className }}
+            </p>
+            <p class="subtitle">
+                <div class="tags">
+                    {% for tag in classTags %}
+                        <span class="tag is-info is-light">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </p>
+        </div>
+    </section>
+
+    <div class = "columns">
+        <div class="column is-four-fifths">
+            {% for document in classDocuments %}
+                <div class = "is-inline-block">
+                    <p>{{document["name"]}}</p>
+                    <a class="button" href="/classes?class_id={{classId}}&doc_id={{document["id"]}}">Open Document</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column is-one-fifths">
+            <div class = "block">
+                <p>Instructors:</p>
+                {% for author in classAuthors %}
+                    <a href="/user?user_id={{author["id"]}}">{{author["name"]}}</a>
+                {% endfor %}
+            </div>
+
+            <div class = "block">
+                <p>{{classDescription}}</p>
+            </div>
+
+            {% if session["isLoggedIn"] and not userEnrolled %}
+                <div class = "block">
+                    <form method="post">
+                        <input class="button" type="submit" name="submit_button" value="Enroll in Class">
+                    </form>
+
+                    <p class='is-small'>This really just shows that you are part of this course on your profile and allows you to ask questions, all documents are always public.</p>
+                </div>
+            {% endif %}
+
+            <div class = "block">
+                {% for enrolledStudent in students %}
+                    <a href="/user?user_id={{ enrolledStudent["id"] }}">{{enrolledStudent["name"]}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

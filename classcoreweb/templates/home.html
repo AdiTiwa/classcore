@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}classcore: home{% endblock %}
+
+{% block content %}
+
+{% if session["isLoggedIn"] %}
+
+<section class="hero is-medium is-success">
+    <div class="hero-body">
+        <p class="title">Welcome back {{ session["userName"] }}!</p>
+        <p class="subtitle">Start <a href="/create">creating</a> or <a href="#classes">continue learning.</a></p>
+    </div>
+</section>
+
+<div class = "px-5">
+    <div class="block" id="classes">
+        <p class="is-size-4">Jump back into a class:</p>
+    </div>
+
+    <div class = "block">
+        {% for i in range(session["userClasses"]|length) %}
+                <p class="subtitle"><a href="/classes?class_id={{session["userClasses"][i] }}">{{ session["userClassNames"][i] }} </a></p>
+                <p>{{ session["userClassDescriptions"][i]}}</p>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+{% else %}
+
+<section class="hero is-medium is-success">
+    <div class="hero-body">
+        <p class="title">ClassCore</p>
+        <p class="subtitle">Open Learning for All</p>
+    </div>
+
+    <div class="hero-foot">
+        <nav class="tabs">
+            <div class="container">
+                <ul>
+                    <li><a href = "#mission">Mission</a></li>
+                    <li><a href = "#how">How</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<div id = "mission">
+<p>
+Mission Statement TODO: complete the mission statement 
+</p>
+</div>
+
+<div id = "how" class='columns'>
+    <div class = "column">
+        <div class = "content">
+        </div>
+    </div>
+    <div class="column">
+        <div class = "content">
+        </div>
+    </div>
+</div>
+
+<div></div>
+
+{% endif %}
+{% endblock %}

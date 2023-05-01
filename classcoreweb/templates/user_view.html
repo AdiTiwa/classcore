@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ userName }} on classcore{% endblock %}
+
+{% block content %}
+<h1 class = "is-size-2">{{ userName }}</h1>
+<h3 class = 'is-size-4'>{{ userDescription }}</h3>
+
+{% if userClasses.length != 0 %}
+    <h4 class="is-size-5">Registered Classes:</h4>
+    {% for i in range(userClasses|length) %}
+        <a href="/classes?class_id={{ userClassIDs[i] }}"> {{ userClasses[i] }} </a> <br>
+    {% endfor %}
+{% else %}
+    <p>Seems like you are not part of any classes. Get started learning then!</p>
+{% endif %}
+
+TODO: Create class owning system here
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}classcore: class list{% endblock %}
+
+{% block content %}
+
+<div class="content px-6">
+
+    <h1>Class List:</h1>
+
+    {% for class in allClasses %}
+        <div class="block">
+            <h2><a href="/classes?class_id={{class["id"]}}">{{ class["name"] }}</a></h2>
+            <p>{{class["description"]}}</p>
+            <div class="field has-addons"><a class="button is-link" href="/classes?class_id={{class["id"]}}">Open Class</a><a class = "button is-success" href="/enroll?class_id={{class["id"]}}">Enroll in Class</a></div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
